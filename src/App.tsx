@@ -35,7 +35,7 @@ function RouteFallback() {
 export default function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
+      <BrowserRouter basename="/sih-frontend">
         <AuthProvider>
           <Suspense fallback={<RouteFallback />}>
             <Routes>
