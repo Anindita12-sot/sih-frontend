@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Semantic design tokens. Components should reference these (bg-surface,
+  text-muted, border-line) instead of raw palette values, so the whole app can
+  be re-themed for the problem statement by editing only this file.
+*/
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+
+  --radius-card: 0.875rem;
+}
+
+:root {
+  --canvas: #f6f7fb;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --line: #e2e5ee;
+  --ink: #10131c;
+  --muted: #5c6478;
+  --brand: #3b53d9;
+  --brand-strong: #2b3fb0;
+  --brand-soft: #eaedfd;
+  --success: #14804a;
+  --success-soft: #e3f5eb;
+  --warning: #a25c00;
+  --warning-soft: #fdf0dd;
+  --danger: #c0243c;
+  --danger-soft: #fdeaed;
+}
+
+.dark {
+  --canvas: #0b0e17;
+  --surface: #131826;
+  --surface-raised: #1a2033;
+  --line: #262d42;
+  --ink: #eef1f8;
+  --muted: #98a1ba;
+  --brand: #7b8dff;
+  --brand-strong: #97a5ff;
+  --brand-soft: #1d2547;
+  --success: #4ade80;
+  --success-soft: #10291d;
+  --warning: #fbbf5b;
+  --warning-soft: #2e2312;
+  --danger: #ff7a8f;
+  --danger-soft: #2e151b;
+}
+
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--ink);
+    font-family:
+      'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Visible focus ring for keyboard users only. */
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@utility skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background-color: var(--brand);
+  color: white;
+
+  &:focus {
+    left: 0;
+  }
+}
