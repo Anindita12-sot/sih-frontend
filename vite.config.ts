@@ -10,15 +10,20 @@ export default defineConfig(({ mode }) => {
   const proxyTarget = env.VITE_DEV_PROXY_TARGET
 
   return {
-    base: '/YOUR-REPOSITORY-NAME/',
+    // Required for GitHub Pages deployment
+    base: '/sih-frontend/',
+
     plugins: [react(), tailwindcss()],
+
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
     },
+
     server: {
       port: 5173,
+
       proxy: proxyTarget
         ? {
             '/api': {
