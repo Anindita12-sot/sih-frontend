@@ -7,12 +7,10 @@ import { defineConfig, loadEnv } from 'vite'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
-  // When VITE_DEV_PROXY_TARGET is set, requests to /api are forwarded to the
-  // backend by the dev server. This keeps the browser on a single origin and
-  // avoids CORS setup while the backend is still being built.
   const proxyTarget = env.VITE_DEV_PROXY_TARGET
 
   return {
+    base: '/YOUR-REPOSITORY-NAME/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
